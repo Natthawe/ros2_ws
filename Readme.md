@@ -7,4 +7,6 @@ Create Packages C++
 
 -create node python
 
--config pkg
+-config package.xml
+
+-config CMakeLists.txt
