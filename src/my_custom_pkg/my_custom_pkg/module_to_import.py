@@ -7,4 +7,4 @@ class MyNode(Node):
 
     def __init__(self):
         super().__init__("my_python_node")
-        self.get_logger().info("TEST PYTHON")
+        self.get_logger().info("TEST PYTHON NODE")
