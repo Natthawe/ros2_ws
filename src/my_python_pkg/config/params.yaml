@@ -1,0 +1,13 @@
+Params_Node:
+  ros__parameters:
+    bool_value: True
+    int_number: 9
+    float_number: 9.9
+    str_text: "params"
+    bool_array: [True, False, True]
+    int_array: [1, 2, 3]
+    float_array: [1.1, 2.2]
+    str_array: ["a", "b"]
+    bytes_array: [0x00, 0xFF] #0-255 and hexadecimal
+    nested_param:
+      another_int: 10

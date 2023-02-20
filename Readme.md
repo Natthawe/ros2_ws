@@ -27,3 +27,16 @@ Create a Launch File with Python
 -config package.xml
 
 -config CMakeLists.txt
+
+
+Day 3
+Creating a YAML Parameters
+-------
+
+-ros2 pkg create --build-type ament_python my_python_pkg
+
+-create params_node.py
+
+-create params.yaml
+
+-create launch file
