@@ -17,11 +17,17 @@ Create a Launch File with Python
 -------
 
 -create file name -> test.launch.py
+
     - add node
+    
         - package
+        
         - executable
+        
         - name
+        
         - remappings
+        
         - parameters
 
 -config package.xml
