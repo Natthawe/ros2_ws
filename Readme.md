@@ -46,3 +46,18 @@ Creating a YAML Parameters
 -create params.yaml
 
 -create launch file
+
+
+Day 4
+Create Packages Differential robot
+-------
+
+-ros2 pkg create --build-type ament_cmake differential_robot
+
+-create differential_robot.launch.py
+
+-create differential_robot.urdf
+
+-add robot_base.stl
+
+-add rviz2_settings.rviz
