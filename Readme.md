@@ -61,3 +61,20 @@ Create Packages Differential robot
 -add robot_base.stl
 
 -add rviz2_settings.rviz
+
+Day 5
+C++ Nodes Development in Depth
+-------
+
+-ros2 pkg create --build-type ament_cmake nodes
+
+#### Check msg
+-ls /opt/ros/humble/include/std_msgs/std_msgs/msg/
+
+#### Check laserscan_msg
+-ls /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/laser_scan.hpp
+-ros2 interface show sensor_msgs/msg/LaserScan
+
+Run
+------
+    ros2 run nodes laser
