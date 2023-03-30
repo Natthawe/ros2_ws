@@ -1,0 +1,370 @@
+<?xml version="1.0"?>
+<robot name="mini_robot">
+
+    <!-- Define the material -->
+    <material name="white">
+    <color rgba="1 1 1 1"/>
+    </material>
+    <material name="red">
+    <color rgba="1 0 0 1"/>
+    </material>  
+    <material name="dark">
+    <color rgba="0.3 0.3 0.3 1.0"/>
+    </material>
+    <material name="orange">
+    <color rgba="1.0 0.4235 0.0392 1.0"/>
+    </material>
+    <material name="blue">
+    <color rgba="0.0 0.0 0.8 1.0"/>
+    </material>  
+
+    <!-- Define the link for the base_footprint -->
+    <link name="base_footprint"/>
+
+    <!-- Define the link for the base -->
+    <link name="base_link">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <box size="0.6 0.5 0.145"/>
+        </geometry>
+        <material name="orange"/>
+    </visual>
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <box size="0.6 0.5 0.145"/>
+        </geometry>
+    </collision>
+    <inertial>
+        <mass value="1" />
+        <inertia ixx="0.01" ixy="0.0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+    </inertial>    
+    </link>
+
+    <!-- Define the joint for the base_joint -->
+    <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0.0 0.0 0.145" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    </joint>
+
+    <!-- Define the link for the wheels -->
+    <link name="wheel_left">
+    <visual>
+        <origin xyz="0 0 0" rpy="1.57 0 0"/>
+        <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+        </geometry>
+        <material name="blue"/>
+    </visual>
+    <collision>
+        <origin xyz="0 0 0" rpy="1.57 0 0"/>
+        <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+        </geometry>
+    </collision>
+    <inertial>
+        <mass value="2"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial> 
+    </link>
+
+    <link name="wheel_right">
+    <visual>
+        <origin xyz="0 0 0" rpy="1.57 0 0"/>
+        <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+        </geometry>
+        <material name="blue"/>
+    </visual>
+    <collision>
+        <origin xyz="0 0 0" rpy="1.57 0 0"/>
+        <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+        </geometry>
+    </collision>
+    <inertial>
+        <mass value="2"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+    </link>
+
+    <!-- Define the joint for the front_left_wheel_joint -->
+    <joint name="front_left_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_left"/>
+    <origin xyz="0.0 0.28 -0.045" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    </joint>
+
+    <!-- Define the joint for the front_right_wheel_joint -->
+    <joint name="front_right_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_right"/>
+    <origin xyz="0.0 -0.28 -0.045" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    </joint>
+
+    <!-- Define the link for the caster -->
+    <link name="caster_front_left">
+    <inertial>
+            <mass value="1" />
+            <inertia ixx="0.01" ixy="0.0" ixz="0" 
+            iyy="0.01" iyz="0" izz="0.01" />
+    </inertial>
+
+    <visual>
+        <geometry>
+        <sphere radius=".06" />
+        </geometry>
+        <material name="dark" />
+    </visual>
+
+    <collision>
+        <origin/>
+        <geometry>
+        <sphere radius=".06" />
+        </geometry>
+    </collision>
+    </link>
+
+    <!-- Define the joint for the caster_joint_front_left -->
+    <joint name="caster_joint_front_left" type="continuous">
+    <origin xyz="0.23 0.18 -0.085" rpy="0.0 0.0 0.0"/>
+    <axis xyz="0 0 1" />
+    <parent link="base_link"/>
+    <child link="caster_front_left"/>
+    </joint>
+
+    <!-- Define the link for the caster -->
+    <link name="caster_front_right">
+    <inertial>
+            <mass value="1" />
+            <inertia ixx="0.01" ixy="0.0" ixz="0" 
+            iyy="0.01" iyz="0" izz="0.01" />
+    </inertial>
+
+    <visual>
+
+        <geometry>
+        <sphere radius=".06" />
+        </geometry>
+        <material name="dark" />
+    </visual>
+
+    <collision>
+        <origin/>
+        <geometry>
+        <sphere radius=".06" />
+        </geometry>
+    </collision>
+    </link>
+
+    <!-- Define the joint for the caster_joint_front_left -->
+    <joint name="caster_joint_front_right" type="continuous">
+    <origin xyz="0.23 -0.18 -0.085" rpy="0.0 0.0 0.0"/>
+    <axis xyz="0 0 1" />
+    <parent link="base_link"/>
+    <child link="caster_front_right"/>
+    </joint>
+
+    <!-- Define the link for the caster -->
+    <link name="caster_rear_left">
+    <inertial>
+            <mass value="1" />
+            <inertia ixx="0.01" ixy="0.0" ixz="0" 
+            iyy="0.01" iyz="0" izz="0.01" />
+    </inertial>
+
+    <visual>
+        <geometry>
+        <sphere radius=".06" />
+        </geometry>
+        <material name="dark" />
+    </visual>
+
+    <collision>
+        <origin/>
+        <geometry>
+        <sphere radius=".06" />
+        </geometry>
+    </collision>
+    </link>
+
+    <!-- Define the joint for the caster_joint_front_left -->
+    <joint name="caster_joint_rear_left" type="continuous">
+    <origin xyz="-0.23 0.18 -0.085" rpy="0.0 0.0 0.0"/>
+    <axis xyz="0 0 1" />
+    <parent link="base_link"/>
+    <child link="caster_rear_left"/>
+    </joint>
+
+    <!-- Define the link for the caster -->
+    <link name="caster_rear_right">
+    <inertial>
+            <mass value="1" />
+            <inertia ixx="0.01" ixy="0.0" ixz="0" 
+            iyy="0.01" iyz="0" izz="0.01" />
+    </inertial>
+
+    <visual>
+        <geometry>
+        <sphere radius=".06" />
+        </geometry>
+        <material name="dark" />
+    </visual>
+
+    <collision>
+        <origin/>
+        <geometry>
+        <sphere radius=".06" />
+        </geometry>
+    </collision>
+    </link>
+
+    <!-- Define the joint for the caster_joint_front_left -->
+    <joint name="caster_joint_rear_right" type="continuous">
+    <origin xyz="-0.23 -0.18 -0.085" rpy="0.0 0.0 0.0"/>
+    <axis xyz="0 0 1" />
+    <parent link="base_link"/>
+    <child link="caster_rear_right"/>
+    </joint>
+
+    <!-- Define the link for the lidar -->
+    <link name="lidar">
+    <inertial>
+            <mass value="0.5" />
+            <inertia ixx="0.01" ixy="0.0" ixz="0" 
+            iyy="0.01" iyz="0" izz="0.01" />
+    </inertial>
+
+    <visual>
+        <geometry>
+        <box size="0.1 0.1 0.1"/>
+        </geometry>
+        <material name="black">
+        <color rgba="0 0 0 1"/>
+        </material>
+    </visual>
+
+    <collision>
+        <geometry>
+            <box size="0.1 0.1 0.1"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <!-- Define the joint for the lidar_joint -->
+    <joint name="lidar_joint" type="fixed">
+    <origin xyz="0.2499 0 0.11" rpy="0.0 0.0 0.0"/>
+    <parent link="base_link"/>
+    <child link="lidar"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    </joint>
+
+    <!-- Define the link for the imu_link -->  
+    <link name="imu_link">
+    </link>
+
+    <!-- Define the joint for the imu_joint -->
+    <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    </joint>  
+
+    <!-- Gazebo colors to links as upper defined colors are only visible in RVIZ-->
+    <gazebo reference="base_link">
+    <material>Gazebo/Orange</material>
+    </gazebo>
+    <gazebo reference="caster">
+    <material>Gazebo/Dark</material>
+    </gazebo>
+
+    <gazebo reference="wheel_left">
+    <material>Gazebo/Blue</material>
+    </gazebo>
+    <gazebo reference="wheel_right">
+    <material>Gazebo/Blue</material>
+    </gazebo>   
+
+<!-- DIFFENERNTIAL DRIVEEEEEEEEEEEEE -->
+
+  <gazebo>
+    <plugin filename="libgazebo_ros_diff_drive.so" name="gazebo_base_controller">
+      <odometry_frame>odom</odometry_frame>
+      <commandTopic>cmd_vel</commandTopic>
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+      <update_rate>15.0</update_rate>
+      <left_joint>front_left_wheel_joint</left_joint>
+      <right_joint>front_right_wheel_joint</right_joint>
+      <wheel_separation>0.5</wheel_separation>
+      <wheel_diameter>0.3</wheel_diameter>
+      <max_wheel_acceleration>0.7</max_wheel_acceleration>
+      <max_wheel_torque>8</max_wheel_torque>
+      <robotBaseFrame></robotBaseFrame>
+    </plugin>
+  </gazebo>
+
+<!-- LIDAAAAAAAAAAAAAAAAAAAAAAAAAAR -->
+   <gazebo reference="lidar">
+    <sensor name="gazebo_lidar" type="ray">
+     <visualize>true</visualize>
+      <update_rate>12.0</update_rate>
+      <plugin filename="libgazebo_ros_ray_sensor.so" name="gazebo_lidar">
+      <ros>
+        <remapping>~/out:=scan</remapping>
+      </ros>
+      
+      <output_type>sensor_msgs/LaserScan</output_type>
+      <frame_name>lidar</frame_name>
+      </plugin>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1</resolution>
+            <min_angle>0.7592182246</min_angle>
+            <max_angle>-0.7592182246</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.5</min>
+          <max>4.0</max>
+          <resolution>0.015</resolution>
+        </range>
+        
+      </ray>
+    </sensor>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+<!-- imuuuuuuuuuuuuuuuu -->
+
+    <gazebo reference="imu_link">
+        <gravity>true</gravity>
+        <sensor name="imu_sensor" type="imu">
+        <always_on>true</always_on>
+        <update_rate>100</update_rate>
+        <visualize>true</visualize>
+        <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+            <ros>
+                <remapping>~/out:=imu</remapping>
+            </ros>
+            <topicName>imu</topicName>
+            <bodyName>imu_link</bodyName>
+            <updateRateHZ>10.0</updateRateHZ>
+            <xyzOffset>0 0 0</xyzOffset>
+            <rpyOffset>0 0 0</rpyOffset>
+            <frameName>imu_link</frameName>
+            <initialOrientationAsReference>false</initialOrientationAsReference>
+        </plugin>
+        <pose>0 0 0 0 0 0</pose>
+        </sensor>
+    </gazebo>
+
+</robot>

@@ -15,7 +15,7 @@ def generate_launch_description():
   rviz_config_path = os.path.join(pkg_share, 'rviz2/rviz2_settings.rviz')
 
   # set the path to the URDF file
-  urdf_path = os.path.join(pkg_share, 'urdf/differential_robot.urdf')
+  urdf_path = os.path.join(pkg_share, 'urdf/four_wheel.urdf')
 
   # Launch configuration variables
   gui = LaunchConfiguration('gui')
