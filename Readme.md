@@ -78,3 +78,9 @@ C++ Nodes Development in Depth
 Run
 ------
     ros2 run nodes laser
+
+Day 6
+-------
+#### PCL
+[Contact Profile](https://pointclouds.org/downloads/)
+    sudo apt install libpcl-dev    
