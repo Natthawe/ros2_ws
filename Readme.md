@@ -81,6 +81,6 @@ Run
 
 Day 6
 -------
-#### PCL
-[Contact Profile](https://pointclouds.org/downloads/)
+[PCL](https://pointclouds.org/downloads/)
+
     sudo apt install libpcl-dev    
