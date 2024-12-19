@@ -103,3 +103,16 @@ Day 6
 
 #### pcl-conversions
     sudo apt install ros-humble-pcl-conversions
+
+Day 7
+Create Package reconfigure
+-------    
+#### Dependencies
+    pip install pyqt5
+
+#### Execute
+    ros2 run reconfig node_reconfig
+    ros2 run reconfig gui_reconfig
+
+#### Launch
+    ros2 launch reconfig parameter_reconfigure.launch.py
