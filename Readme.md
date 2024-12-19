@@ -84,3 +84,22 @@ Day 6
 [PCL](https://pointclouds.org/downloads/)
 
     sudo apt install libpcl-dev    
+
+[rtabmap_ros](https://github.com/introlab/rtabmap_ros/tree/humble-devel)
+
+[turtlebot3_simulations](https://github.com/ROBOTIS-GIT/turtlebot3_simulations/tree/humble-devel)
+
+####rtabmap
+    sudo apt install ros-humble-rtabmap
+
+####rtabmap-ros
+    sudo apt install ros-humble-rtabmap-ros
+
+####pcl-msgs
+    sudo apt install ros-humble-pcl-msgs    
+
+####pcl-ros
+    sudo apt install ros-humble-pcl-ros
+
+####pcl-conversions
+    sudo apt install ros-humble-pcl-conversions
