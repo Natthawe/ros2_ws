@@ -2,7 +2,6 @@ import sys
 import rclpy
 from rclpy.node import Node
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLineEdit, QPushButton, QLabel, QGridLayout
-# from parameter_reconfigure_node import ParameterReconfigureNode
 from reconfig.parameter_reconfigure_node import ParameterReconfigureNode
 
 

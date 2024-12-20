@@ -2,6 +2,8 @@ import rclpy
 from rclpy.node import Node
 from rclpy.parameter import Parameter
 import yaml
+from ament_index_python.packages import get_package_share_directory
+import os
 
 class ParameterReconfigureNode(Node):
     def __init__(self):
@@ -31,19 +33,40 @@ class ParameterReconfigureNode(Node):
         # Save parameters to YAML
         self.save_parameters_to_yaml(int_array, string_array)
 
+    # def save_parameters_to_yaml(self, int_array, string_array):
+    #     """Save parameters to a YAML file."""
+    #     params = {
+    #         'int_array_param': list(int_array),
+    #         'string_array_param': [str(item) for item in string_array]
+    #     }
+    #     params_file_path = '/home/natthawe/ros2_tutorials_ws/src/reconfig/config/parameters.yaml'
+    #     with open(params_file_path, 'w') as file:
+    #         yaml.dump(params, file, default_flow_style=False, sort_keys=False)
+    #     self.get_logger().info(f'Parameters saved to {params_file_path}')
+
     def save_parameters_to_yaml(self, int_array, string_array):
         """Save parameters to a YAML file."""
         params = {
-            'int_array_param': int_array,
-            'string_array_param': string_array
+            'int_array_param': list(int_array),
+            'string_array_param': [str(item) for item in string_array]
         }
-        params_file_path = '/home/natthawe/ros2_tutorials_ws/src/reconfig/config/parameters.yaml'
+
+        package_share_directory = get_package_share_directory('reconfig')
+        params_file_path = os.path.join(package_share_directory, 'config', 'parameters.yaml')        
+        # params_file_path = '/home/natthawe/ros2_tutorials_ws/src/reconfig/config/parameters.yaml'
+
+        # Custom dumper to prevent unnecessary quotes
+        class NoQuotesDumper(yaml.SafeDumper):
+            def represent_str(self, data):
+                if ':' in data or ',' in data:
+                    return self.represent_scalar('tag:yaml.org,2002:str', data, style='"')
+                return self.represent_scalar('tag:yaml.org,2002:str', data)
+
+        yaml.add_representer(str, NoQuotesDumper.represent_str, Dumper=NoQuotesDumper)
+
         with open(params_file_path, 'w') as file:
-            formatted_params = {
-                'int_array_param': int_array,
-                'string_array_param': [f"{item}" for item in string_array]
-            }
-            yaml.dump(formatted_params, file, default_flow_style=False)
+            yaml.dump(params, file, Dumper=NoQuotesDumper, default_flow_style=False, sort_keys=False)
+
         self.get_logger().info(f'Parameters saved to {params_file_path}')
 
 
